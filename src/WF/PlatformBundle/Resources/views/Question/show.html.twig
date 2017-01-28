@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Question</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Numeroques</th>
+                <td>{{ entity.numeroQues }}</td>
+            </tr>
+            <tr>
+                <th>Textques</th>
+                <td>{{ entity.textQues }}</td>
+            </tr>
+            <tr>
+                <th>Reponseques</th>
+                <td>{{ entity.reponseQues }}</td>
+            </tr>
+            <tr>
+                <th>Propositions</th>
+                {% for prop in entity.propositions %}
+                    <td>{{prop.numeroPropo}} : {{prop.descriptionPropo}}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('questions', { 'idTest': idTest }) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('questions_edit', { 'idTest': idTest, 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

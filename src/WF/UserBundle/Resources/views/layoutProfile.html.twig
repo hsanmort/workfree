@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> 
+    <html lang="en"> 
+    <!--<![endif]-->
+        <head>
+            <title>Profile | {{app.user}}</title>
+
+            <!-- Meta -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            {% block stylesheets %}
+
+                <!-- Favicon -->
+                <link rel="shortcut icon" href="{{asset('icone.png')}}">
+
+                <!-- Web Fonts -->
+                <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+                <!-- CSS Global Compulsory -->
+                <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+
+                <!-- CSS Header and Footer -->
+                <link rel="stylesheet" href="{{ asset('assets/css/headers/header-default.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/css/headers/header-v8.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/css/footers/footer-v1.css')}}">
+
+                <!-- CSS Implementing Plugins -->
+                <link rel="stylesheet" href="{{ asset('assets/plugins/animate.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/plugins/line-icons/line-icons.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}">
+                {# add new profile #}
+                <link rel="stylesheet" href="{{ asset('assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css')}}">
+                <link rel="stylesheet" href="{{ asset('assets/plugins/sky-forms-pro/skyforms/css/font-awesome.css')}}">
+                
+
+                <!-- CSS Page Style -->
+                <link rel="stylesheet" href="{{ asset('assets/css/pages/page_log_reg_v1.css')}}">
+
+                {# add new profile #}
+                <link rel="stylesheet" href="{{ asset('assets/css/pages/profile.css')}}">
+
+                <!-- CSS Theme -->
+                <link rel="stylesheet" id="style_color" href="{{ asset('assets/css/theme-colors/default.css ')}}">
+                <link rel="stylesheet" href="{{ asset('assets/css/theme-skins/dark.css')}}">
+
+                <!-- CSS Customization -->
+                <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
+            {% endblock %}
+        </head>
+
+        <body class="header-fixed header-fixed-space-v2">
+           
+            <!--=== Header v8 ===-->
+    <div class="header-v8 header-sticky">
+        <!-- Topbar blog -->
+        <div class="blog-topbar">
+            <div class="topbar-search-block">
+                <div class="container">
+                    <form action="">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="search-close"><i class="icon-close"></i></div>
+                    </form>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-xs-8">
+                        <div class="topbar-time">Samedi 13/02/2019</div>
+                        <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+                        <ul class="topbar-list topbar-menu">
+                            <li><a href="#">About WorkFree</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-xs-4 clearfix">
+                        <i class="fa fa-search search-btn pull-right"></i>
+                        <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+                            
+                        </ul>
+                    </div>
+                </div><!--/end row-->
+            </div><!--/end container-->
+        </div>
+        <!-- End Topbar blog -->
+
+        <!-- Navbar -->
+        <div class="navbar mega-menu" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="res-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="navbar-brand">
+                        <a href="{{path('wf_platform_index')}}">
+                            <img src="{{asset('assets/img/workfree 2.png')}}" alt="Logo">
+                        </a>
+                    </div>
+                </div><!--/end responsive container-->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <div class="res-container">
+                        <ul class="nav navbar-nav navbar-left">
+                            {% if is_granted('ROLE_FREELANCER') %}
+                                <!-- Find -->
+                                <li ><a href="{{path('wf_platform_view')}}">Find Work  </a> </li>
+                                <!-- End  -->
+
+                                <!-- Jobs -->
+{#                                 <li ><a href="javascript:void(0);" >My Jobs</a> </li>
+ #}                                <!-- End  -->
+
+                                <!-- inbox -->
+                                <li ><a href="javascript:void(0);" > Inbox </a></li>
+                                <!-- End  -->
+
+                                <!-- Test -->
+                                <li ><a href="{{path('freelancer_find_tests')}}">Tests</a></li>
+                                <!-- End  -->
+                            {% elseif is_granted('ROLE_CLIENT') %}
+                                <!-- Find -->
+                                <li ><a href="{{path('wf_platform_find')}}">Find Freelancer  </a> </li>
+                                <!-- End  -->
+
+                                <!-- inbox -->
+                                <li ><a href="{{path('client_profile_projects')}}" > Inbox </a></li>
+                                <!-- End  -->
+                            {% elseif is_granted('ROLE_RECRUTEUR') %}
+                                <!-- Find -->
+                                <li ><a href="{{path('wf_platform_find')}}">Find Freelancer  </a> </li>
+                                <!-- End  -->
+
+                                <!-- inbox -->
+                                <li ><a href="javascript:void(0);" > Inbox </a></li>
+                                <!-- End  -->
+                                <!-- Test -->
+                                <li ><a href="{{path('tests_recruteur')}}">My Tests</a></li>
+                                <!-- End  -->
+                            {% endif %}
+
+
+                                
+
+                            {# <ul class="profile-wrapper">
+                            <li>
+                                <!-- user profile -->
+                                <div class="profile">
+                                    <img src="https://secure.gravatar.com/avatar/2f05a5d3273d54e90f1ad6dca5eb97bc?s=47" />
+                                    <a href="#" class="name">iModDesign</a>
+                                    
+                                    <!-- more menu -->
+                                    <ul class="menu">
+                                        <li><a href="#">Edit</a></li>
+                                        <li><a href="#">Change Password</a></li>
+                                        <li><a href="#">Log out</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul> #}
+
+                           
+                        </ul>
+                         <ul class="nav navbar-nav navbar-right">
+                            <li >
+                                <a href="{{path('wf_user_profile_wall')}}"  class="fa fa-user fa-x3 "  aria-hidden="true">
+                                </a>                    
+                            </li>
+                            <li>
+                                <a href="{{path('fos_user_security_logout')}}"class="fa fa-power-off fa-x3" aria-hidden="true">
+                                
+                            </a>
+
+                            </li>
+                            
+
+                        </ul> 
+
+                    </div><!--/responsive container-->
+                </div><!--/navbar-collapse-->
+            </div><!--/end contaoner-->
+        </div>
+        <!-- End Navbar -->
+    </div>
+    <!--=== End Header v8 ===-->
+
+            <div>
+
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+
+               
+            <!--=== Footer Version 1 ===-->
+            <div class="footer-v1">
+                <div class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Address -->
+                            <div class="col-md-3 map-img md-margin-bottom-40">
+                                <div class="headline"><h2>Contact Us</h2></div>
+                                <address class="md-margin-bottom-40">
+                                    Sesame Cite Ghazela <br />
+                                    Tunisia, TN <br />
+                                    Phone: (216) 26646 091 <br />
+                                    Email: <a href="mailto:info@anybiz.com" class="">test@test.com</a>
+                                </address>
+                            </div><!--/col-md-3-->
+                            <!-- End Address -->
+                        </div>
+                    </div>
+                </div><!--/footer-->
+
+                <div class="copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    2016 &copy; All Rights Reserved.
+                                   <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                                </p>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="col-md-6">
+                                <ul class="footer-socials list-inline">
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+                                            <i class="fa fa-skype"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+                                            <i class="fa fa-pinterest"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+                                            <i class="fa fa-dribbble"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Social Links -->
+                        </div>
+                    </div>
+                </div><!--/copyright-->
+            </div>
+            <!--=== End Footer Version 1 ===-->
+        
+        {% block javascripts %}
+
+            <!-- JS Global Compulsory -->
+            <script type="text/javascript" src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/plugins/jquery/jquery-migrate.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+            <!-- JS Implementing Plugins -->
+            <script type="text/javascript" src="{{ asset('assets/plugins/back-to-top.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/plugins/smoothScroll.js')}}"></script>
+            <script type="text/javascript" src="{{asset('assets/plugins/modernizr.js')}}"></script>
+            <script type="text/javascript" src="{{asset('assets/plugins/jquery.parallax.js')}}"></script>
+             <!-- Gem jQuery -->
+            {# add new profile #}
+
+            <script type="text/javascript" src="{{ asset('assets/plugins/counter/waypoints.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/plugins/counter/jquery.counterup.min.js')}}"></script>
+
+            <script type="text/javascript" src="{{ asset('assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+
+            <!-- JS Customization -->
+            <script type="text/javascript" src="{{ asset('assets/js/custom.js')}}"></script>
+            <!-- JS Page Level -->
+            <script type="text/javascript" src="{{ asset('assets/js/app.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/plugins/style-switcher.js')}}"></script>
+            {# add new profile #}
+            <script type="text/javascript" src="{{ asset('assets/js/plugins/datepicker.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/plugins/style-switcher.js')}}"></script>
+
+
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    App.init();
+                    StyleSwitcher.initStyleSwitcher();
+                });
+            </script>
+{#         add le 07/05.2016 to add new section inprofile free #}
+             <script src="{{ asset('assets/js_effect/jquery-1.11.2.min.js')}}"></script> 
+            <script type="text/javascript" src="{{ asset('assets/js_effect/clone-form-td.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js_effect/clone-form-td2.js')}}"></script>
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+
+            <!--[if lt IE 9]>
+                <script src="assets/plugins/respond.js"></script>
+                <script src="assets/plugins/html5shiv.js"></script>
+                <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+            <![endif]-->
+        {% endblock %}
+
+        </body>
+    </html>

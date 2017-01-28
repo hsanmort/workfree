@@ -1,0 +1,68 @@
+{% extends "WFUserBundle::layoutReg.html.twig" %}
+
+{% block fos_user_content %}
+	<!--=== Content Part ===-->
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+                <form action="{{ path('freelancer_registration') }}" class="reg-page"{{ form_enctype(form) }} method="POST">
+                        <div class="reg-header">
+                            <h2>Register a new Freelancer account</h2>
+                            <p>Already Signed Up? Click <a href="page_login.html" class="color-green">Sign In</a> to login your account.</p>
+                        </div>
+
+
+
+                        {{ form_row(form._token) }}
+                        {{form_label(form.nom, "First Name",{'label': {'class': 'col-sm-3 control-label'}})}}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
+                        {{ form_errors(form.nom) }}
+
+                        {{form_label(form.prenom, "Last Name",{'label': {'class': 'col-sm-3 control-label'}})}}
+                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
+                        {{ form_errors(form.prenom) }}
+
+                        {{form_label(form.username, "User Name",{'label': {'class': 'col-sm-3 control-label'}})}}
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
+                        {{ form_errors(form.username) }}
+                         
+
+                       {{form_label(form.email, "Email Address",{'label': {'class': 'col-sm-3 control-label'}})}}
+                       {{ form_widget(form.email, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
+                       {{ form_errors(form.email) }}
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{form_label(form.plainPassword.first, "Password ",{'label': {'class': 'col-sm-3 control-label'}})}}
+                                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
+                                {{ form_errors(form.plainPassword.first) }}
+
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                 {{form_label(form.plainPassword.second, "Confirm Password ",{'label': {'class': 'col-sm-3 control-label'}})}}
+                                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control margin-bottom-20'}}) }}
+                                 {{ form_errors(form.plainPassword.second) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    I read <a href="page_terms.html" class="color-green">Terms and Conditions</a>
+                                </label>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <input class="btn-u" value="Work Now" type="submit"></input>
+                            </div>
+                        </div>
+                        {{ form_widget(form._token) }}
+                </form>
+            </div>
+        </div>
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+   
+{% endblock fos_user_content %}

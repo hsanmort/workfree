@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> 
+	 <!--<![endif]-->
+	<head>
+		<title>
+	  		{% block title %}WF Plateform{% endblock %}
+		</title>
+		<!-- Meta -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <!-- Favicon -->
+    	<link rel="shortcut icon" href="{{asset('icone.png')}}">
+
+		{% block stylesheets %}
+		 <!-- Web Fonts -->
+	    <link rel='stylesheet' type='text/css' href="{{ asset('//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin')}}">
+
+	    <!-- CSS Global Compulsory -->
+	    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+
+	    <!-- CSS Header and Footer -->
+	    <link rel="stylesheet" href="{{ asset('assets/css/headers/header-default.css')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/css/footers/footer-v1.css')}}">
+
+	    <!-- CSS Implementing Plugins -->
+	    <link rel="stylesheet" href="{{ asset('assets/plugins/animate.css')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/plugins/line-icons/line-icons.css')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/plugins/image-hover/css/img-hover.css')}}">
+	    {# add new project #}
+	    
+        <link rel="stylesheet" href="{{ asset('assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/sky-forms-pro/skyforms/css/font-awesome.css')}}">
+                
+
+
+
+	    <!-- CSS Page Style -->
+	    <link rel="stylesheet" href="{{ asset('assets/css/pages/page_job.css')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/css/pages/page_search_inner.css')}}">
+
+	    <!-- CSS Theme -->
+	    <link rel="stylesheet" href="{{ asset('assets/css/theme-colors/default.css" id="style_color')}}">
+	    <link rel="stylesheet" href="{{ asset('assets/css/theme-skins/dark.css')}}">
+
+	    <!-- CSS Customization -->
+	    <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		{# added #}
+		<link rel="stylesheet" href="{{ asset('assets/css/perso.css')}}">
+		{% endblock %}
+	</head>
+
+	<body class="header-fixed ">
+		<div class="wrapper ">
+		    <!--=== Header ===-->
+		    <div class="header header-sticky">
+		        <div class="container">
+		            <!-- Logo -->
+		            <a class="logo" href="{{path('wf_platform_index')}}">
+		                <img src="{{asset('assets/img/workfree 2.png')}}" width="200" alt="Logo">
+		            </a>
+		            <!-- End Logo -->
+
+		            <!-- Topbar -->
+		            <div class="topbar">
+		                <ul class="loginbar pull-right">
+		                    <li class="hoverSelector">
+		                        <i class="fa fa-globe"></i>
+		                        <a>Languages</a>
+		                        <ul class="languages hoverSelectorBlock">
+		                            <li class="active">
+		                                <a href="#">English <i class="fa fa-check"></i></a>
+		                            </li>
+		                            <li><a href="#">Frensh</a></li>
+		                            
+		                        </ul>
+		                    </li>
+		                    <li class="topbar-devider"></li>
+		                    <li><a href="page_faq.html">Help</a></li>
+		                    
+
+		                </ul>
+		            </div>
+		            <!-- End Topbar -->
+
+		            <!-- Toggle get grouped for better mobile display -->
+		            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		                <span class="sr-only">Toggle navigation</span>
+		                <span class="fa fa-bars"></span>
+		            </button>
+		            <!-- End Toggle -->
+		        </div><!--/end container-->
+
+		        <!-- Collect the nav links, forms, and other content for toggling -->
+		        <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+		            <div class="container">
+		                <ul class="nav navbar-nav">
+							<!-- Home -->
+							<li ><a href="{{path('wf_platform_index')}}">Home</a></li>
+							<!-- End Home -->
+							<!-- ViewProjet -->
+							{% if is_granted('ROLE_FREELANCER') or is_granted('ROLE_FREELANCER')  %}
+							<li><a href="{{path('wf_platform_view')}}">View Projects</a></li>
+							{% endif %}
+							<!-- End ViewProjet -->
+
+							<!-- ViewProjet -->
+							<li><a href="{{path('wf_platform_find')}}">Find Freelancers</a></li>
+							<!-- End ViewProjet -->
+							{# profile #}
+							<li class="dropdown">
+			                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			                        <span class="glyphicon glyphicon-user"></span> 
+			                        {{app.user.username}}
+			                        {# <span class="glyphicon glyphicon-chevron-down"></span> #}
+			                    </a>
+			                    <ul class="dropdown-menu">
+			                        {# <li>
+			                            <div class="navbar-login">
+			                                <div class="row">
+			                                    <div class="col-lg-4">
+			                                        <p class="text-center">
+			                                            <span class="glyphicon glyphicon-user icon-size"></span>
+			                                        </p>
+			                                    </div>
+			                                    <div class="col-lg-8">
+			                                        <p class="text-left"><strong>{{app.user.nom}} {{app.user.prenom}}</strong></p>
+			                                        <p class="text-left small">{{app.user.email}}</p>
+			                                        <p class="text-left">
+			                                            <a href="#" class="btn btn-primary btn-block btn-sm">Account</a>
+			                                        </p>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </li>
+			                        <li class="divider"></li> #}
+			                        <li class="user-header ">
+			                        	  {% if not app.user.path %}
+				                            {% set imgSrc = '../holder.jpg'%}
+				                        {% else %}
+				                            {% set imgSrc = app.user.path %}
+				                        {% endif %}
+				                        <center>
+							            <img src="{{ asset('upload/users/'~ app.user.id ~'/' ~ imgSrc) }}" width="50" height="80"  class="img-circle" alt="Profile Photo" /></center>
+							        <p>{{ app.user.nom }}</p> <p>{{app.user.prenom}}</p>
+							    </li>
+							    <li class="user-footer">
+							        <div class="pull-left">
+							            <a href="{{ url('wf_user_profile_wall') }}" class="btn btn-default btn-flat"><i class="fa fa-user"></i> </a>
+							        </div>
+
+							        <div class="pull-right">
+							            <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> </a>
+							        </div>
+							    </li>
+			                        
+			                    </ul>
+			                </li> 
+		                </ul>
+		            </div><!--/end container-->
+		            <!-- Collect the nav links, forms, and other content for toggling -->
+              
+		        </div><!--/navbar-collapse-->
+		          
+		    </div>
+		    <!--=== End Header ===-->
+		        {% block body %}
+		        {% endblock %}
+		      <!--=== Footer v1 ===-->
+		    <div id="footer-v1" class="footer-v1">
+		        <div class="footer">
+		            <div class="container">
+		                <div class="row">
+		                    <!-- About -->
+		                    <div class="col-md-3 md-margin-bottom-40">
+		                        <a href="{{path('wf_platform_index')}}"><img id="logo-footer" width="100" class="footer-logo" src="{{asset('assets/img/workfree 2.png')}}" alt=""></a>
+		                        <p>WorkFree <strong>company</strong> Creating an online workplace for the world and for Tunisia. <br>
+                        The best companies win with the best talent. But great people can be hard to find. We’ve created an online workplace for the world – connecting clients with top freelance professionals </p>
+		                    </div>
+		                    <!-- End About -->
+
+		                   
+
+		                    <!-- Link List -->
+		                    <div class="col-md-3 md-margin-bottom-40">
+		                        <div class="headline"><h2>Useful Links</h2></div>
+		                        <ul class="list-unstyled link-list">
+		                            <li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
+		                            <li><a href="#">View Projects</a><i class="fa fa-angle-right"></i></li>
+		                            <li><a href="#">Find Freelancer</a><i class="fa fa-angle-right"></i></li>
+		                           
+		                        </ul>
+		                    </div>
+		                    <!-- End Link List -->
+
+		                    <!-- Address -->
+		                    <div class="col-md-3 map-img md-margin-bottom-40">
+		                        <div class="headline"><h2>Contact Us</h2></div>
+		                        <address class="md-margin-bottom-40">
+		                            Sesame Cite Ghazela <br />
+                                    Tunisia, TN <br />
+                                    Phone: (216) 26646 091 <br />
+                                    Email: <a href="mailto:info@anybiz.com" class="">test@test.com</a>
+		                        </address>
+		                    </div>
+		                    <!-- End Address -->
+		                </div>
+		            </div>
+		        </div><!--/footer-->
+
+		        <div class="copyright">
+		            <div class="container">
+		                <div class="row">
+		                    <div class="col-md-6">
+		                        <p>
+		                            2016 &copy; All Rights Reserved.
+		                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+		                        </p>
+		                    </div>
+
+		                    <!-- Social Links -->
+		                    <div class="col-md-6">
+		                        <ul class="footer-socials list-inline">
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+		                                    <i class="fa fa-facebook"></i>
+		                                </a>
+		                            </li>
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+		                                    <i class="fa fa-skype"></i>
+		                                </a>
+		                            </li>
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+		                                    <i class="fa fa-google-plus"></i>
+		                                </a>
+		                            </li>
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+		                                    <i class="fa fa-linkedin"></i>
+		                                </a>
+		                            </li>
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+		                                    <i class="fa fa-pinterest"></i>
+		                                </a>
+		                            </li>
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+		                                    <i class="fa fa-twitter"></i>
+		                                </a>
+		                            </li>
+		                            <li>
+		                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+		                                    <i class="fa fa-dribbble"></i>
+		                                </a>
+		                            </li>
+		                        </ul>
+		                    </div>
+		                    <!-- End Social Links -->
+		                    <div class="col-md-6">
+		                        <ul class="list-inline sponsors-icons pull-right">
+		                            <li><i class="fa fa-cc-paypal"></i></li>
+		                            <li><i class="fa fa-cc-visa"></i></li>
+		                            <li><i class="fa fa-cc-mastercard"></i></li>
+		                            <li><i class="fa fa-cc-discover"></i></li>
+		                        </ul>
+		                    </div>
+		                </div>
+		            </div>
+		        </div><!--/copyright-->
+		    </div>
+		    <!--=== End Footer v1 ===-->
+		</div><!--/End Wrapepr-->
+
+
+	  {% block javascripts %}
+	    <!-- JS Global Compulsory -->
+		<script type="text/javascript" src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/plugins/jquery/jquery-migrate.min.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+		<!-- JS Implementing Plugins -->
+		<script type="text/javascript" src="{{ asset('assets/plugins/back-to-top.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/plugins/smoothScroll.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/plugins/jquery.parallax.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/plugins/image-hover/js/touch.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/plugins/image-hover/js/modernizr.js')}}"></script>
+		{# add new project #}
+		<script type="text/javascript" src="{{ asset('assets/plugins/counter/waypoints.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/plugins/counter/jquery.counterup.min.js')}}"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+
+		<!-- JS Customization -->
+		<script type="text/javascript" src="{{ asset('assets/js/custom.js')}}"></script>
+		<!-- JS Page Level -->
+		<script type="text/javascript" src="{{ asset('assets/js/app.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('assets/js/plugins/style-switcher.js')}}"></script>
+		<script type="text/javascript">
+		    jQuery(document).ready(function() {
+		        App.init();
+		        App.initParallaxBg();
+		        StyleSwitcher.initStyleSwitcher();
+		    });
+		</script>
+		<!--[if lt IE 9]>
+		    <script src="assets/plugins/respond.js"></script>
+		    <script src="assets/plugins/html5shiv.js"></script>
+		    <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+		<![endif]-->
+	  {% endblock %}
+
+	</body>
+</html>

@@ -1,0 +1,291 @@
+<?php
+
+namespace WF\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Freelancer
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="WF\UserBundle\Entity\FreelancerRepository")
+ */
+class Freelancer extends User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cv", type="string", length=255)
+     */
+    private $cv;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resume", type="text")
+     */
+    private $resume;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="dispo", type="boolean")
+     */
+    private $dispo;
+
+    /**
+     *@ORM\ManyToMany(targetEntity="WF\PlatformBundle\Entity\Test", mappedBy="freelancers")
+    */
+
+    private $tests;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="WF\PlatformBundle\Entity\Formation", inversedBy="freelancers")
+     * @ORM\JoinTable(name="FreelancerFormation")
+     */
+    private $formations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="WF\PlatformBundle\Entity\Competence", inversedBy="freelancers")
+     * @ORM\JoinTable(name="FreelancerCompetence")
+     */
+    private $competences;
+
+    /**
+
+    * @ORM\OneToMany(targetEntity="WF\PlatformBundle\Entity\Experience", mappedBy="freelancer", cascade={"remove", "persist"})
+
+    */
+
+    protected $experiences;
+        /**
+
+    * @ORM\OneToMany(targetEntity="WF\PlatformBundle\Entity\Offre", mappedBy="freelancer", cascade={"remove", "persist"})
+
+    */
+
+    protected $offres;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cv
+     *
+     * @param string $cv
+     * @return Freelancer
+     */
+    public function setCv($cv)
+    {
+        $this->cv = $cv;
+
+        return $this;
+    }
+
+    /**
+     * Get cv
+     *
+     * @return string 
+     */
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * Set resume
+     *
+     * @param string $resume
+     * @return Freelancer
+     */
+    public function setResume($resume)
+    {
+        $this->resume = $resume;
+
+        return $this;
+    }
+
+    /**
+     * Get resume
+     *
+     * @return string 
+     */
+    public function getResume()
+    {
+        return $this->resume;
+    }
+
+    /**
+     * Set dispo
+     *
+     * @param boolean $dispo
+     * @return Freelancer
+     */
+    public function setDispo($dispo)
+    {
+        $this->dispo = $dispo;
+
+        return $this;
+    }
+
+    /**
+     * Get dispo
+     *
+     * @return boolean 
+     */
+    public function getDispo()
+    {
+        return $this->dispo;
+    }
+
+    /**
+     * Add tests
+     *
+     * @param \WF\PlatformBundle\Entity\Test $tests
+     * @return Freelancer
+     */
+    public function addTest(\WF\PlatformBundle\Entity\Test $tests)
+    {
+        $this->tests[] = $tests;
+
+        return $this;
+    }
+
+    /**
+     * Remove tests
+     *
+     * @param \WF\PlatformBundle\Entity\Test $tests
+     */
+    public function removeTest(\WF\PlatformBundle\Entity\Test $tests)
+    {
+        $this->tests->removeElement($tests);
+    }
+
+    /**
+     * Get tests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTests()
+    {
+        return $this->tests;
+    }
+
+    /**
+     * Add formations
+     *
+     * @param \WF\PlatformBundle\Entity\Formation $formations
+     * @return Freelancer
+     */
+    public function addFormation(\WF\PlatformBundle\Entity\Formation $formations)
+    {
+        $this->formations[] = $formations;
+
+        return $this;
+    }
+
+    /**
+     * Remove formations
+     *
+     * @param \WF\PlatformBundle\Entity\Formation $formations
+     */
+    public function removeFormation(\WF\PlatformBundle\Entity\Formation $formations)
+    {
+        $this->formations->removeElement($formations);
+    }
+
+    /**
+     * Get formations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFormations()
+    {
+        return $this->formations;
+    }
+
+    /**
+     * Add competences
+     *
+     * @param \WF\PlatformBundle\Entity\Competence $competences
+     * @return Freelancer
+     */
+    public function addCompetence(\WF\PlatformBundle\Entity\Competence $competences)
+    {
+        $this->competences[] = $competences;
+
+        return $this;
+    }
+
+    /**
+     * Remove competences
+     *
+     * @param \WF\PlatformBundle\Entity\Competence $competences
+     */
+    public function removeCompetence(\WF\PlatformBundle\Entity\Competence $competences)
+    {
+        $this->competences->removeElement($competences);
+    }
+
+    /**
+     * Get competences
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
+    /**
+     * Add experiences
+     *
+     * @param \WF\PlatformBundle\Entity\Experience $experiences
+     * @return Freelancer
+     */
+    public function addExperience(\WF\PlatformBundle\Entity\Experience $experiences)
+    {
+        $this->experiences[] = $experiences;
+
+        return $this;
+    }
+
+    /**
+     * Remove experiences
+     *
+     * @param \WF\PlatformBundle\Entity\Experience $experiences
+     */
+    public function removeExperience(\WF\PlatformBundle\Entity\Experience $experiences)
+    {
+        $this->experiences->removeElement($experiences);
+    }
+
+    /**
+     * Get experiences
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+}

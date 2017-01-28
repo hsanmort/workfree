@@ -1,0 +1,150 @@
+
+{% extends "WFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs breadcrumbs-dark">
+    <div class="container">
+        <h1 class="pull-left">Projects</h1>
+        
+    </div>
+</div>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Search Block Version 2 ===-->
+<div class="search-block-v2">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Search again</h2>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search words with regular expressions ...">
+                <span class="input-group-btn">
+                    <button class="btn-u" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/container-->
+<!--=== End Search Block Version 2 ===-->
+<div class="container s-results margin-bottom-50">
+        <div class="row">
+            <div class="col-md-2 hidden-xs related-search">
+                <div class="row">
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Related searches</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Web design company</a></li>
+                            <li><a href="#">Web design tutorials</a></li>
+                            <li><a href="#">Self designing</a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Tutorials</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Basic Concepts</a></li>
+                            <li><a href="#">‎Building your first web page</a></li>
+                            <li><a href="#">‎Advanced HTML</a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Trending topics</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Bootstrap</a></li>
+                            <li><a href="#">Wrapbootstrap</a></li>
+                            <li><a href="#">Codrops</a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Search history</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Web design articles</a></li>
+                            <li><a href="#">Tutorials for web design</a></li>
+                        </ul>
+                        <a class="see-all" href="#">See all</a>
+                        <hr>
+                    </div>
+
+
+                </div>
+            </div><!--/col-md-2-->
+            <div class="col-md-10">
+                <span class="results-number">About {{ nbprojet }}  results</span>
+                <!-- Begin Inner Results -->
+                {% for l in listeProjets %}
+                <div class="inner-results">
+                    <h3><a href="#">{{l.intitule}}</a></h3>
+                    <ul class="list-inline up-ul">
+                       
+                        <li class="btn-group">
+
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Share</a></li>
+                                <li><a href="#">Similar</a></li>
+                                <li><a href="#">Advanced search</a></li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    <div class="overflow-h">
+                        
+                        <img class="img-responsive profile-img margin-bottom-20" src="{{ asset('upload/projet/' ~ l.id ~ '/' ~ l.photo) }}" alt="" width="200" height="200" >
+                        <div class="overflow-a">
+                            <p>{{l.description}}</p>
+                            <ul class="list-inline down-ul">
+                                <li>
+                                    <ul class="list-inline star-vote">
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star"></i></li>
+                                        <li><i class="color-green fa fa-star-half-o"></i></li>
+                                    </ul>
+                                </li>
+                                <li>Work to be done {{l.dateDebut|date('Y-m-d')}}</li>
+                                <li>{{l.budget}}$</li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% if is_granted('ROLE_FREELANCER')%}
+                        <a class="btn-u btn-u-sm" href="{{path('wf_freelancer_apply', {'id': l.id}) }}">Apply For project</a>
+                    {% else %}
+                        <a class="btn-u btn-u-sm" href="{{path('wf_clien_offre', {'pId': l.id}) }}">Check offers</a>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+                <!-- Begin Inner Results -->
+                <hr>
+                <div class="margin-bottom-30"></div>
+                
+                 <div class="tag-box tag-box-v7 text-justify">
+                   <div class="text-center">
+                    <ul class="pagination">
+                        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+                          {% for p in range(1, nbPages) %}
+                            <li{% if p == page %} class="active"{% endif %}>
+                              <a style="background-color:#72c02c" href="{{ path('wf_platform_view', {'page': p}) }}">{{ p }}</a>
+                            </li>
+                          {% endfor %}
+                    </ul>
+                    </div>
+                        
+                </div>
+            </div>
+
+        </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,163 @@
+
+{% extends "WFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs breadcrumbs-dark">
+    <div class="container">
+        <h1 class="pull-left">Search Results</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Page</a></li>
+            <li class="active">Search results</li>
+        </ul>
+    </div>
+</div>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Search Block Version 2 ===-->
+<div class="search-block-v2">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Search again</h2>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search words with regular expressions ...">
+                <span class="input-group-btn">
+                    <button class="btn-u" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/container-->
+<!--=== End Search Block Version 2 ===-->
+<div class="container s-results margin-bottom-50">
+        <div class="row">
+            <div class="col-md-2 hidden-xs related-search">
+                <div class="row">
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Related searches</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Web design company</a></li>
+                            <li><a href="#">Web design tutorials</a></li>
+                            <li><a href="#">Self designing</a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Tutorials</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Basic Concepts</a></li>
+                            <li><a href="#">‎Building your first web page</a></li>
+                            <li><a href="#">‎Advanced HTML</a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Trending topics</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Bootstrap</a></li>
+                            <li><a href="#">Wrapbootstrap</a></li>
+                            <li><a href="#">Codrops</a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-12 col-sm-4">
+                        <h3>Search history</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Web design articles</a></li>
+                            <li><a href="#">Tutorials for web design</a></li>
+                        </ul>
+                        <a class="see-all" href="#">See all</a>
+                        <hr>
+                    </div>
+
+                    
+                </div>
+            </div><!--/col-md-2-->
+            <div class="col-md-10">
+                <span class="results-number">About {{ nbfree }} results </span>
+                <!-- Begin Inner Results -->
+                <!-- Easy Blocks v1 -->
+        {% for l in listeFreelancers %}
+            
+            <div class="row high-rated margin-bottom-20 mcfreelancer">
+                <!-- Easy Block -->
+                <div class="md-margin-bottom-40">
+                    <div class="easy-block-v1">
+                        {% if l.dispo == 1 %}
+
+                            <div class="easy-block-v1-badge rgba-default">Available</div>
+                        {% else %}
+                            <div class="easy-block-v1-badge rgba-default">Unavailable</div>
+                        {% endif %}
+
+
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="rounded-x active" data-target="#carousel-example-generic" data-slide-to="0"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                
+                                {% if not l.path %}
+                                    {% set imgSrc = '../holder.jpg'%}
+                                {% else %}
+                                    {% set imgSrc = l.path %}
+                                {% endif %}
+                        <img class="img-responsive profile-img margin-bottom-20" src="{{ asset('upload/users/' ~ l.id ~ '/' ~ imgSrc) }}" alt="" width="200" height="200" >
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-h">
+                            <h3>{{l.nom}}<p> </p>{{l.prenom}}</h3>
+                            <div class="star-vote pull-right">
+                                <ul class="list-inline">
+                                    <li><i class="color-green fa fa-star"></i></li>
+                                    <li><i class="color-green fa fa-star"></i></li>
+                                    <li><i class="color-green fa fa-star"></i></li>
+                                    <li><i class="color-green fa fa-star-half-o"></i></li>
+                                    <li><i class="color-green fa fa-star-o"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">Category:</span>Web Dev</li>
+                            <li><span class="color-green">Experience:</span> 5 - years of experience</li>
+                        </ul>
+                        <a class="btn-u btn-u-sm" href="{{path('wf_platform_checkoutRec')}}">Hire</a> 
+                    </div>
+                </div>
+                <!-- End Easy Block -->
+            </div>
+        {% endfor %}
+        <!-- End Easy Blocks v1 -->
+
+        <div class="clearfix margin-bottom-20"><hr></div>
+                <!-- Begin Inner Results -->
+                <hr>
+                <div class="margin-bottom-30"></div>
+                <div class="text-center">
+                    <ul class="pagination">
+                        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+                          {% for p in range(1, nbPages) %}
+                            <li{% if p == page %} class="active"{% endif %}>
+                              <a style="background-color:#72c02c" href="{{ path('wf_platform_find', {'page': p}) }}">{{ p }}</a>
+                            </li>
+                          {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+</div>
+
+{% endblock %}

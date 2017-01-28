@@ -1,0 +1,172 @@
+
+{% extends "WFPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!--=== Job Img ===-->
+    <div class="job-img margin-bottom-30">
+        <div class="job-banner">
+            <h2>Discover the Companies You would love to Work for </h2>
+        </div>
+        <div class="job-img-inputs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 md-margin-bottom-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                            <input type="text" placeholder="what job you are looking for" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 md-margin-bottom-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" placeholder="what freelancer would you like to hire" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn-u btn-block btn-u-dark"> Search Job</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--=== End Job Img ===-->
+<!--=== Content Part ===-->
+    <div class="container content">
+        <!-- Job Content -->
+        
+        <div class="headline"><h2>Job Categories</h2></div>
+
+        
+            {% for c in listecategorie %}
+        <div class="row job-content margin-bottom-40 mcindex">
+            <div class=" md-margin-bottom-40 ">
+
+                
+                <h3 class="heading-md"><strong>{{c.NomCat}}</strong></h3>
+                <ul class="list-unstyled categories">
+                    <li><a href="#">Android</a> <small class="hex">(342 jobs)</small></li>
+                    <li><a href="#">IOS</a> <small class="hex">(143 jobs)</small></li>
+                    <li><a href="#">Windows phone</a> <small class="hex">(66 jobs)</small></li>
+                   
+                </ul>
+                
+            </div>
+          
+        </div>
+        {% endfor %}
+        
+
+        
+        <!-- End Job Content -->
+        
+
+        <div class="headline margin-bottom-35"><h2>Highest Rated Jobs </h2></div>
+        {% for l in listeProjets %}
+
+        <!-- Easy Blocks v1 -->
+        <div class="row high-rated margin-bottom-20 mcfreelancer">
+            <!-- Easy Block -->
+            <div class=" md-margin-bottom-40 ">
+                <div class="easy-block-v1">
+                    <div class="easy-block-v1-badge rgba-default">Published</div>
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li class="rounded-x active" data-target="#carousel-example-generic" data-slide-to="0"></li>
+                            <li class="rounded-x" data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li class="rounded-x" data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img alt="" style="height:100px" src="{{ asset('upload/projet/' ~ l.id ~ '/' ~ l.photo) }}">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="overflow-h">
+                        <h3>{{ l.intitule }}</h3>
+                        <div class="star-vote pull-right">
+                            <ul class="list-inline">
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star"></i></li>
+                                <li><i class="color-green fa fa-star-half-o"></i></li>
+                                <li><i class="color-green fa fa-star-o"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><span class="color-green">Name:</span> Manager / Executive</li>
+                        <li><span class="color-green">Job:</span> 5 - years of experience</li>
+                        <li><span class="color-green">Description:</span> {{l.description}}</li>
+                        <li><span class="color-green">Periode:</span> {{l.duree}}days</li>
+                        <li><span class="color-green">Costs:</span> {{l.budget}}$</li>
+                    </ul>
+                    <a class="btn-u btn-u-sm" href="#">View More</a>
+                </div>
+            </div>
+            <!-- End Easy Block -->
+        </div>
+        <!-- End Easy Blocks v1 -->
+        {% endfor %}
+
+        <div class="clearfix margin-bottom-20"><hr></div>
+    </div>
+<!--=== End Content Part ===-->
+<!--=== Job Partners ===-->
+    <div class="container content job-partners">
+        <div class="title-box-v2">
+            <h2>Our <span class="color-green">Featured</span> Partners</h2>
+           
+        </div>
+
+        <ul class="list-inline our-clients" id="effect-2">
+            <li>
+                <figure>
+                    <img src="{{asset('assets/img/clients/sesame.jpg')}}" alt="">
+                    <div class="img-hover">
+                        <h4>Sesame</h4>
+                    </div>
+                </figure>
+            </li>
+            <li>
+                <figure>
+                    <img src="{{asset('assets/img/clients/symfony2.jpg')}}" alt="">
+                    <div class="img-hover">
+                        <h4>Symfony 2</h4>
+                    </div>
+                </figure>
+            </li>
+            <li>
+                <figure>
+                    <img src="{{asset('assets/img/clients/github.png')}}" alt="">
+                    <div class="img-hover">
+                        <h4>GitHub</h4>
+                    </div>
+                </figure>
+            </li>
+            
+        </ul>
+    </div><!--/container-->
+<!--=== End Job Partners ===-->
+  <!-- Begin Inner Results -->
+                <hr>
+                <div class="margin-bottom-30"></div>
+                
+                <div class="tag-box tag-box-v7 text-justify">
+                   <div class="text-center">
+                    <ul class="pagination">
+                        {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+                          {% for p in range(1, nbPages) %}
+                            <li{% if p == page %} class="active"{% endif %}>
+                              <a style="background-color:#72c02c" href="{{ path('wf_platform_view', {'page': p}) }}">{{ p }}</a>
+                            </li>
+                          {% endfor %}
+                    </ul>
+                    </div>
+                        
+                </div>
+{% endblock %}

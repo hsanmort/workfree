@@ -1,0 +1,128 @@
+{% extends "WFUserBundle::layoutProfile.html.twig" %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{ asset('assets/js/formsCustoFrm.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/formsCustoExp.js')}}"></script>
+{% endblock %}
+
+{% block fos_user_content %}
+<div class="container content" >
+<div class="row">
+<div class="col-md-12">
+    <div class="cube-portfolio container margin-bottom-60 sky-form">
+        <header>General Informations</header>
+
+            {{form_start(form, {'attr': {'class': 'sky-form'}})}}
+            <dl class="dl-horizontal">
+                <br>
+                <dt><strong>Your Address </strong></dt>
+                <dd><section>
+                    <label class="input">
+                        <i class="icon-append icon-user"></i>
+                        {{ form_widget(form.adresse, {'attr': {'class': 'sky-form'}}) }}
+                        {{ form_errors(form.adresse) }}
+                    </label>
+                </section></dd><hr>
+
+                <dt><strong>Your Photo </strong></dt>
+                <dd><section>
+                    <label for="photo" class="input input-file">
+                        <div class="button">
+                            {{ form_widget(form.photo, {'attr': {'class': 'sky-form','onchange':'console.log(this.parentNode.nextSibling);'}}) }}
+                            {{ form_errors(form.photo) }}
+                            Browse
+                        </div>
+                        <input type="text" onchange="this.parentNode.nextSibling.value = this.value" placeholder="Include some files" readonly>
+                </label>
+                </section></dd><hr>
+
+                <dt><strong>Your CV </strong></dt>
+                <dd><section>
+                    <label for="cv" class="input input-file">
+                        <div class="button">
+                            {{ form_widget(form.cv, {'attr': {'class': 'sky-form','onchange':'console.log(this.parentNode.nextSibling);'}}) }}
+                            {{ form_errors(form.cv) }}
+                            Browse
+                        </div>
+                        <input type="text" onchange="this.parentNode.nextSibling.value = this.value" placeholder="Include some files" readonly>
+                </label>
+                </section></dd><hr>
+
+                <dt><strong>Your Description </strong></dt>
+                <dd><section>
+                    <label class="input textarea textarea-resizable">
+                        <i class="icon-append icon-comment"></i>
+                        {{ form_widget(form.resume, {'attr': {'class': 'sky-form'}}) }}
+                        {{ form_errors(form.resume) }}
+                    </label>
+                </section></dd><hr>
+
+                
+                
+            </dl>
+
+        <!--***********************-->
+        <header>Formations</header>
+        <dl class="dl-horizontal">
+            <dd><section>
+
+                <ul class="frms" data-prototype="{{ form_widget(form.formations.vars.prototype)|e }}">
+                        {# iterate over each existing tag and render its only field: name #}
+                        {% for prop in form.formations %}
+                            <li>
+                            <dd>
+                                <section>
+                                    <label class="input divPropo">
+                                        <i class="icon-append icon-user"></i>
+                                        {{ form_widget(prop, {'attr': {'class': 'sky-form'}}) }}
+                                        {{ form_errors(prop) }}
+                                    </label>
+                                    <div>
+                                    </div>
+                                </section>
+                            </dd>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </section></dd><hr>
+        </dl>
+
+        <!--***********************-->
+        <header>Experiences</header>
+        <dl class="dl-horizontal">
+            <dd><section>
+
+                <ul class="exps" data-prototype="{{ form_widget(form.experiences.vars.prototype)|e }}">
+                    {# iterate over each existing tag and render its only field: name #}
+                    {% for prop in form.experiences %}
+                        <li>
+                        <dd>
+                            <section>
+                                <label class="input divPropo">
+                                    <i class="icon-append icon-user"></i>
+                                    {{ form_widget(prop, {'attr': {'class': 'sky-form'}}) }}
+                                    {{ form_errors(prop) }}
+                                </label>
+                                <div>
+                                </div>
+                            </section>
+                        </dd>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section></dd><hr>
+        </dl>
+
+
+
+            {{form_widget(form.submit, {'attr': {'class': 'sky-form btn-u'}, 'label': 'Confirm'})}}
+            {{form_widget(form._token)}}
+    </div>
+</div>
+
+
+
+</div>
+</div>
+{% endblock %}

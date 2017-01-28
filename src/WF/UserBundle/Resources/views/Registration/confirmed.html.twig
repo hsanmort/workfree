@@ -1,0 +1,242 @@
+{% extends "WFUserBundle::layoutProfile.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+	
+        
+    
+
+{% block fos_user_content %}
+    {% if is_granted('ROLE_FREELANCER') %} 
+    	<div class="container content" >
+        	<div class="row">
+        		<div class="col-md-12">
+        			<div class="cube-portfolio container margin-bottom-60">
+	        			<form action="#" id="sky-form" class="sky-form">
+		                    <header>General Informations</header>
+		                    <fieldset>
+		                    
+
+	                	</form>
+                	</div>
+        		</div>
+
+        		
+
+        	</div>
+        </div>
+    
+    {% elseif is_granted('ROLE_CLIENT') %}
+	     <!--=== Content Part ===-->
+	    <div class="container content">
+	    	<div class="row">
+	        	<div class="col-md-9">
+	            	<div class="headline"><h2>Add your project</h2></div>
+
+	                <!-- Clients Block-->
+	                <div class="row clients-page">
+	                    
+	                    <div class="col-md-10">
+	                    	<div class="row">
+	                            <div id="profile" class="profile-edit tab-pane fade in active">
+	                                
+	                                
+	                                <br>
+
+	                                <form action="{{ path('wf_platform_add') }}" id="ProfileFormTest" class="sky-form"{{ form_enctype(form) }} method="POST">
+	                                    <dl class="dl-horizontal">
+	                                       
+	                                        <dt><strong>Project Subject </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.intitule, {'attr': {'class': 'sky-form'}}) }}
+	                                                    {{ form_errors(form.intitule) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd>
+
+	                                        <hr>
+	                                       <INPUT TYPE="hidden" NAME="wf_platformbundle_projet[client]" VALUE="{{app.user.id}}">
+
+	                                         <hr>
+	                                        <dt><strong>Picture </strong></dt>
+	                                        <dd>                                          
+	                                        <section>
+	                                        <label for="file" class="input input-file">
+	                                            <div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" placeholder="Include some files" readonly>
+	                                        </label>
+	                                            <label for="file" class="input input-file">
+	                                                    <div class="button">
+	                                                        {{ form_widget(form.file, {'attr': {'class': 'sky-form','onchange':'console.log(this.parentNode.nextSibling);'}}) }}
+	                                                        {{ form_errors(form.file) }}
+	                                                        Browse
+	                                                    </div>
+	                                                    <input type="text" value="aaa" placeholder="Include some files" readonly>
+	                                            </label> 
+	                                        </section>
+	                                        </dd>
+	                                        <hr>
+	                                        <dt><strong>Description </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.description, {'attr': {'class': 'sky-form'}}) }}
+	                                                    {{ form_errors(form.description) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd>
+
+	                                        <hr>
+	                                        <dt><strong>Time </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.duree, {'attr': {'class': 'sky-form'}}) }}
+	                                                    {{ form_errors(form.duree) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd>
+
+	                                        <hr>
+	                                        <dt><strong>Work Start </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.dateDebut, {'attr': {'class': 'sky-form'}}) }}
+	                                                    {{ form_errors(form.dateDebut) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd>
+	                                        <hr>
+	                                        <dt><strong>Coast </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.budget, {'attr': {'class': 'sky-form'}}) }}
+	                                                    {{ form_errors(form.budget) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd>
+	                                        <hr>
+	                                        <dt><strong>etat </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.etat, {'attr': {'class': 'sky-form','value':'0'} }) }}
+	                                                    {{ form_errors(form.etat) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd>
+	                                        
+	                                        
+	                                        <hr>
+	                                         <dt><strong>Select a Category </strong></dt>
+	                                        <dd>
+	                                            <section>
+	                                                <label class="input">
+	                                                    <i class="icon-append icon-user"></i>
+	                                                    {{ form_row(form._token) }}
+	                                                    {{ form_widget(form.categorie, {'attr': {'class': 'sky-form'}}) }}
+	                                                    {{ form_errors(form.categorie) }}
+	                                                </label>
+	                                            </section>
+	                                        </dd> 
+
+
+	                                       
+	                                        
+	                                        
+	                                        
+	                                        {{ form_widget(form._token) }}
+	                                        <hr>
+	                                    </dl>
+
+	                                    <button type="reset" class="btn-u btn-u-default">Cancel</button>
+	                                    <button type="submit" class="btn-u">Save Changes</button>
+	                                </form>
+	                                    <script>
+	                                        $("#ProfileFormTest").validate();
+	                                    </script>
+	                    </div>
+	            
+
+	        </div>
+	                       
+	                    </div>
+	                </div>
+	                <!-- End Clients Block-->
+
+
+	                
+	            </div><!--/col-md-9-->
+
+	        	<div class="col-md-3">
+	            	<!-- Our Services -->
+	                <div class="who margin-bottom-30">
+	                    <div class="headline"><h2>Our Services</h2></div>
+	                    <p>At vero eos et accusamus et iusto odio dign issimos ducimus qui blanditiis iusto.</p>
+	                    <ul class="list-unstyled">
+	                        <li><a href="#"><i class="fa fa-desktop"></i>Vivamus imperdiet condimentum</a></li>
+	                        <li><a href="#"><i class="fa fa-bullhorn"></i>Anim pariatur cliche squid</a></li>
+	                        <li><a href="#"><i class="fa fa-globe"></i>Eget placerat felis consectetur</a></li>
+	                        <li><a href="#"><i class="fa fa-group"></i>Condimentum diam eget placerat</a></li>
+	                    </ul>
+	                </div>
+
+	            	<!-- About Us -->
+	            	<div class="headline"><h2>About Us</h2></div>
+	                <div class="margin-bottom-30">
+	                    <p>At vero eos et acc usamus et iusto odio dign issimos ducimus atque corrupti quos.</p>
+	                    <p>dolores etrerum facilis est etenim a feugiat cupiditate non quos. <a class="linked color-green" href="#">Read more</a></p>
+	                </div>
+
+	            	<!-- Contact Us -->
+	                <div class="who margin-bottom-30">
+	                    <div class="headline"><h2>Contact Us</h2></div>
+	                    <p>Vero facilis est etenim a feugiat cupiditate non quos etrerum facilis.</p>
+	                    <ul class="list-unstyled">
+	                        <li><a href="#"><i class="fa fa-home"></i>5B amus ED554, New York, US</a></li>
+	                        <li><a href="#"><i class="fa fa-envelope-o"></i>infp@example.com</a></li>
+	                        <li><a href="#"><i class="fa fa-phone"></i>1(222) 5x86 x97x</a></li>
+	                        <li><a href="#"><i class="fa fa-globe"></i>http://www.example.com</a></li>
+	                    </ul>
+	                </div>
+	            </div><!--/col-md-3-->
+	        </div><!--/row-->
+	    </div><!--/container-->
+	    <!--=== End Content Part ===-->
+
+    {% elseif is_granted('ROLE_RECRUTEUR') %}
+    	<div class="container content">
+    		<script type="text/javascript">
+    			window.location="{{path('tests_recruteur')}}";
+    		</script>
+    	</div>
+	{% endif %}
+        
+
+
+
+{% endblock fos_user_content %}
+
+{% block javascripts %}
+             <script src="{{ asset('assets/js_effect/jquery-1.11.2.min.js')}}"></script> 
+            <script type="text/javascript" src="{{ asset('assets/js_effect/clone-form-td.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js_effect/clone-form-td2.js')}}"></script>
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+
+        
+{% endblock %}

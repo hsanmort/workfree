@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> 
+<html lang="en"> 
+    <!--<![endif]-->
+    <head>
+        <title>
+            {% block title %}WorkFree{% endblock %}
+        </title>
+
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        {% block stylesheets %}
+            <!-- Favicon -->
+            <link rel="shortcut icon" href="{{asset('icone.png')}}">
+
+            <!-- Web Fonts -->
+            <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+            <!-- CSS Global Compulsory -->
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/bootstrap/css/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/css/one.style.css')}}">
+
+            <!-- CSS Footer -->
+            <link rel="stylesheet" href="{{ asset('assets_home/css/footers/footer-v7.css')}}">
+            
+            <!-- CSS Implementing Plugins -->
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/animate.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/line-icons/line-icons.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/font-awesome/css/font-awesome.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/pace/pace-flash.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/owl-carousel/owl.carousel.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/revolution-slider/rs-plugin/css/settings.css')}}" type="text/css" media="screen">
+            <link rel="stylesheet" href="{{ asset('assets_home/plugins/login-signup-modal-window/css/style.css')}}">
+            <!--[if lt IE 9]><link rel="stylesheet" href="assets_home/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+
+            <!-- Style Switcher -->
+            <link rel="stylesheet" href="{{ asset('assets_home/css/plugins/style-switcher.css')}}">
+
+            <!-- CSS Theme -->
+            <link rel="stylesheet" href="{{ asset('assets_home/css/theme-colors/default.css')}}" id="style_color">
+            <link rel="stylesheet" href="{{ asset('assets_home/css/theme-skins/one.dark.css')}}">
+
+            <!-- CSS Customization -->
+            <link rel="stylesheet" href="{{ asset('assets_home/css/custom.css')}}">
+        {% endblock %}
+    </head>
+
+    <!--
+    The #page-top ID is part of the scrolling feature.
+    The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+    -->
+    
+    <body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+        
+
+        <div class="wrapper">
+           <!--=== Header ===-->
+            <nav class="one-page-header one-page-header-style-2 navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="menu-container page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="{{ path("wf_core_homepage")}}">
+                            <span>Work</span>Free
+                            
+                        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <div class="menu-container">
+                            
+
+                            <ul class="nav navbar-nav">
+                                <li class="page-scroll">
+                                    <a href="#services">Start your project</a>
+                                </li>
+                                <li class="page-scroll">
+                                    <a href="#services">Become a freelancer</a>
+                                </li>
+                                <li class="page-scroll">
+                                    <a href="#services">Hire a freelancer</a>
+                                </li>
+                                <li class="page-scroll">
+                                    <a href="#about">About Us</a>
+                                </li>
+                                <li class="page-scroll">
+                                    <a href="#contact">Contact</a>
+                                </li>                               
+                                
+                                
+                            </ul>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                             <ul class="nav navbar-nav navbar-right">
+                                <li >
+                                    <a href="{{path('wf_user_profile_wall')}}"  class="fa fa-user fa-x3"  aria-hidden="true"> Profile
+                                    </a>                    
+                                </li>
+                                <li>
+                                    <a href="{{path('fos_user_security_logout')}}"class="fa fa-power-off fa-x3" aria-hidden="true"> Logout
+                                    
+                                </a>
+
+                                </li>
+                            </ul>
+                            {% else %}
+
+                            <ul class="nav navbar-nav navbar-right">
+                              <li><a href="#services"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                              <li><a href="{{ path("fos_user_security_login") }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+            <!--=== End Header ===-->
+
+            {% block body %}
+            {% endblock %}
+            <!-- Contact Section -->
+            <section id="contact" class="contacts-section">
+                <div class="container content-lg">
+                    <div class="title-v1">
+                        <h2>Contact Us</h2>
+                        <p>Use the info below to get in touch with us </p>
+                    </div>
+
+                    <div class="row contacts-in">
+                        <div class="col-md-6 md-margin-bottom-40">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-home"></i> Sesame Cite Ghazela </li>
+                                <li><i class="fa fa-phone"></i> (216) 26 646 091</li>
+                                <li><i class="fa fa-envelope"></i> <a href="info@example.com">Test@test.com</a></li>
+                                
+                            </ul>
+                        </div>
+
+                        <div class="col-md-6">
+                            <form action="assets_home/php/sky-forms-pro/demo-contacts-process.php" method="post" id="sky-form3" class="sky-form contact-style">
+                                <fieldset>
+                                    <label>Name<span class="color-red">*</span></label>
+                                    <div class="row">
+                                        <div class="col-md-7 margin-bottom-20 col-md-offset-0">
+                                            <div>
+                                                <input type="text" name="name" id="name" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Email <span class="color-red">*</span></label>
+                                    <div class="row">
+                                        <div class="col-md-7 margin-bottom-20 col-md-offset-0">
+                                            <div>
+                                                <input type="text" name="email" id="email" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Message<span class="color-red">*</span></label>
+                                    <div class="row">
+                                        <div class="col-md-11 margin-bottom-20 col-md-offset-0">
+                                            <div>
+                                                <textarea rows="8" name="message" id="message" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark">Send Message</button></p>
+                                </fieldset>
+
+                                <div class="message">
+                                    <i class="rounded-x fa fa-check"></i>
+                                    <p>Your message was successfully sent!</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copyright-section">
+                    <p>2016 &copy; All Rights Reserved. WorkAs <a target="_blank" href="http://localhost/freelancer/web/">Freelancer</a></p>
+                    <ul class="social-icons">
+                        <li><a href="#" data-original-title="Facebook" class="social_facebook rounded-x"></a></li>
+                        <li><a href="#" data-original-title="Twitter" class="social_twitter rounded-x"></a></li>
+                        <li><a href="#" data-original-title="Goole Plus" class="social_googleplus rounded-x"></a></li>
+                        <li><a href="#" data-original-title="Pinterest" class="social_pintrest rounded-x"></a></li>
+                        <li><a href="#" data-original-title="Linkedin" class="social_linkedin rounded-x"></a></li>
+                    </ul>
+                    <span class="page-scroll"><a href="#intro"><i class="fa fa-angle-double-up back-to-top"></i></a></span>
+                </div>
+
+                <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+                    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+                        <ul class="cd-switcher">
+                            <li><a href="javascript:void(0);">Login</a></li>
+                            
+                        </ul>
+
+                        <div id="cd-login"> <!-- log in form -->
+                            <form class="cd-form">
+                                <p class="social-login">
+                                    <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
+                                    <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
+                                    <span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
+                                </p>
+
+                                <div class="lined-text"><span>Or use your account </span><hr></div>
+
+                                <p class="fieldset">
+                                    <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                                    <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                                    <span class="cd-error-message">Error message here!</span>
+                                </p>
+
+                                <p class="fieldset">
+                                    <label class="image-replace cd-password" for="signin-password">Password</label>
+                                    <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+                                    <a href="javascript:void(0);" class="hide-password">Hide</a>
+                                    <span class="cd-error-message">Error message here!</span>
+                                </p>
+
+                                <p class="fieldset">
+                                    <input type="checkbox" id="remember-me" checked>
+                                    <label for="remember-me">Remember me</label>
+                                </p>
+
+                                <p class="fieldset">
+                                    <input class="full-width" type="submit" value="Login">
+                                </p>
+                            </form>
+
+                            <p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
+                            <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+                        </div> <!-- cd-login -->
+
+                        
+
+                        <div id="cd-reset-password"> <!-- reset password form -->
+                            <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+                            <form class="cd-form">
+                                <p class="fieldset">
+                                    <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                                    <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                                    <span class="cd-error-message">Error message here!</span>
+                                </p>
+
+                                <p class="fieldset">
+                                    <input class="full-width has-padding" type="submit" value="Reset password">
+                                </p>
+                            </form>
+
+                            <p class="cd-form-bottom-message"><a href="javascript:void(0);">Back to log-in</a></p>
+                        </div> <!-- cd-reset-password -->
+                        <a href="javascript:void(0);" class="cd-close-form">Close</a>
+                    </div> <!-- cd-user-modal-container -->
+                </div> <!-- cd-user-modal -->
+
+            </section>
+            <!-- End Contact Section -->
+
+        </div>
+        <!--/End Wrapepr-->
+
+        
+        
+        {% block javascripts %}
+         <!-- JS Global Compulsory -->
+            <script src="{{ asset('assets_home/plugins/jquery/jquery.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/jquery/jquery-migrate.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+            <!-- JS Implementing Plugins -->
+            <script src="{{ asset('assets_home/plugins/smoothScroll.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/jquery.easing.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/pace/pace.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/jquery.parallax.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/counter/waypoints.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/counter/jquery.counterup.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/owl-carousel/owl.carousel.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/modernizr.js')}}"></script>
+            <script src="{{ asset('assets_home/plugins/login-signup-modal-window/js/main.js')}}"></script> 
+            <!-- Gem jQuery -->
+
+            <!-- JS Page Level-->
+            <script src="{{ asset('assets_home/js/one.app.js')}}"></script>
+            <script src="{{ asset('assets_home/js/forms/login.js')}}"></script>
+            <script src="{{ asset('assets_home/js/forms/contact.js')}}"></script>
+            <script src="{{ asset('assets_home/js/plugins/pace-loader.js')}}"></script>
+            <script src="{{ asset('assets_home/js/plugins/owl-carousel.js')}}"></script>
+            <script src="{{ asset('assets_home/js/plugins/style-switcher.js')}}"></script>
+            <script src="{{ asset('assets_home/js/plugins/revolution-slider.js')}}"></script>
+            <script src="{{ asset('assets_home/js/plugins/cube-portfolio/cube-portfolio-lightbox.js')}}"></script>
+            <script>
+                jQuery(document).ready(function() {
+                    App.init();
+                    App.initCounter();
+                    App.initParallaxBg();
+                    LoginForm.initLoginForm();
+                    ContactForm.initContactForm();
+                    OwlCarousel.initOwlCarousel();
+                    StyleSwitcher.initStyleSwitcher();
+                    RevolutionSlider.initRSfullScreen();
+                });
+            </script>
+            <!--[if lt IE 9]>
+                <script src="assets_home/plugins/respond.js"></script>
+                <script src="assets_home/plugins/html5shiv.js"></script>
+                <script src="assets_home/js/plugins/placeholder-IE-fixes.js"></script>
+                <script src="assets_home/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+            <![endif]-->
+
+            <!--[if lt IE 10]>
+                <script src="assets_home/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+            <![endif]-->
+            
+        {% endblock %}
+    </body>
+</html>
+

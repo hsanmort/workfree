@@ -1,0 +1,106 @@
+{% extends "WFUserBundle::layoutProfile.html.twig" %}
+    
+{% block fos_user_content %}
+    <div class="wrapper">
+        <!--=== Profile ===-->
+        <div class="container content profile">
+            <div class="row">
+                <!--Left Sidebar-->
+                <div class="col-md-3 md-margin-bottom-40">
+                    {% if not app.user.path %}
+                        {% set imgSrc = '../holder.jpg'%}
+                    {% else %}
+                        {% set imgSrc = app.user.path %}
+                    {% endif %}
+                    <img class="img-responsive profile-img margin-bottom-20" src="{{ asset('upload/users/'~ app.user.id ~'/' ~ imgSrc) }}" alt="" width="300">
+
+                    <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                        <li class="list-group-item ">
+                            <a href="{{path('recruteur_profile_wall')}}"><i class="fa fa-user"></i> Profile</a>
+                        </li>
+                       {#  <li class="list-group-item ">
+                            <a href="{{path('recruteur_profile_users')}}"><i class="fa fa-group"></i> Contacts</a>
+                        </li> #}
+                        <li class="list-group-item active ">
+                            <a href="{{path('tests_recruteur')}}"><i class="fa fa-cubes"></i> My Tests</a>
+                        </li>
+                       
+                        <li class="list-group-item ">
+                            <a href="{{path('recruteur_profile_edit')}}"><i class="fa fa-cog"></i> Settings</a>
+                        </li>
+                    </ul>
+
+                    <!--Datepicker-->
+                    <form action="#" id="sky-form2" class="sky-form">
+                        <div id="inline-start"></div>
+                    </form>
+                    <!--End Datepicker-->
+                </div>
+                <!--End Left Sidebar-->
+                 <!-- Profile Content -->
+        <div class="col-md-9">
+            <div class="profile-body">
+
+                <!--Timeline-->
+                <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="heading-md pull-left"><i class="fa fa-briefcase"></i> Test: {{ entity.nomTest }}</h2>
+                        <div class="pull-right margin-buttom-20" style="display: inline-flex;">
+                    <div class="pull-left">
+                    <a class="btn-u" href="{{ path('tests_edit', { 'id': entity.id }) }}">Edit</a></div>
+                    {{ form(delete_form) }}
+                </div>
+                    </div>
+                    <div class="panel-heading">
+                    <div class="cbp_tmlabel" style="margin-left: 50px !important;">
+                        <div>Passed by: <b>{{entity.id}}</b> freelancer(s)</div>
+                        <div>Minimum Score: <b>{{entity.scoreMin}}</b></div>
+                        <div>Time: <b>{{entity.delai}}</b> mins</div>
+                    </div>
+                    </div>
+                </div>
+                
+                <br/>
+                <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="heading-md pull-left"><i class="fa fa-briefcase"></i> Questions ({{entity.questions.count}})</h2>
+                        <a class="btn-u pull-right" href="{{path('questions_new', {'idTest': entity.id})}}">Add Question</a>
+                    </div>
+                    
+                    {% for qst in entity.questions %}
+                        {% set rep = "" %}
+                        {% for prop in qst.propositions %}
+                            {% if prop.numeroPropo == qst.reponseQues %}
+                                {% set rep = prop.descriptionPropo %}
+                            {% endif %}
+                        {% endfor %}
+                        <a href="{{path('questions_edit', {'idTest': entity.id, 'id': qst.id})}}">
+                        <div class="panel-heading margin-bottom-20 margin-top-20">
+                        <ul class="timeline-v2 timeline-me">
+                        <li><div> <h3> Number: {{qst.numeroQues}} </h3></div></li>
+                        <li><div><b>Text:</b> {{qst.textQues}} </div></li>
+                        <li><div><b>Correct proposition:</b> (n° {{qst.reponseQues}}): {{rep}} </div></li>
+                        <li><div><b>All Propositions:</b> {{qst.propositions.count}} </div></li>
+                        </ul>
+                        <ul class="timeline-v2 timeline-me">
+                        {% for prop in qst.propositions %}
+                            <span class="btn-u" style="display: inline-flex;"> {{prop.numeroPropo}}: {{prop.descriptionPropo}} </span>
+                        {% endfor %}
+                        </ul>
+                        </div>
+                        
+
+                    {% endfor %}     
+                    
+                </div>
+                <!--End Timeline-->
+
+                
+            </div>
+        </div>
+        <!-- End Profile Content -->
+            </div>
+        </div><!--/container-->
+        <!--=== End Profile ===-->
+    </div><!--/wrapper-->
+{% endblock fos_user_content %}

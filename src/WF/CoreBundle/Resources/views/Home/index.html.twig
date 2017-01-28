@@ -1,0 +1,319 @@
+{% extends "WFCoreBundle::base.html.twig" %}
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+        <!-- Intro Section -->
+        <section id="intro" class="intro-section">
+            <div class="fullscreenbanner-container">
+                <div class="fullscreenbanner">
+                    <ul>
+                        <!-- SLIDE 1 -->
+                        <li data-transition="curtain-1" data-slotamount="5" data-masterspeed="700" data-title="Slide 1">
+                            <!-- MAIN IMAGE -->
+                            <img src="{{ asset('assets_home/img/sliders/revolution/bg1.jpg')}}" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                            <!-- LAYERS -->
+                            <div class="tp-caption rs-caption-1 sft start"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="100"
+                                data-speed="800"
+                                data-start="2000"
+                                data-easing="Back.easeInOut"
+                                data-endspeed="300">
+                                Who said it had to be hard to find a good designer or developer?
+
+                            </div>
+
+                            <!-- LAYER -->
+                            <div class="tp-caption rs-caption-2 sft"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="200"
+                                data-speed="1000"
+                                data-start="3000"
+                                data-easing="Power4.easeOut"
+                                data-endspeed="300"
+                                data-endeasing="Power1.easeIn"
+                                data-captionhidden="off"
+                                style="z-index: 6">
+                                Workfree is an invite-only community where you meet top freelance designers, developers, or studios to build your next project. <br>
+                                
+                            </div>
+
+                            <!-- LAYER -->
+                            <div class="tp-caption rs-caption-3 sft"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="360"
+                                data-speed="800"
+                                data-start="3500"
+                                data-easing="Power4.easeOut"
+                                data-endspeed="300"
+                                data-endeasing="Power1.easeIn"
+                                data-captionhidden="off"
+                                style="z-index: 6">
+                                <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                                <span class="page-scroll"><a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                            </div>
+                        </li>
+
+                        <!-- SLIDE 2 -->
+                        <li data-transition="slideup" data-slotamount="5" data-masterspeed="1000" data-title="Slide 2">
+                            <!-- MAIN IMAGE -->
+                            <img src="{{ asset('assets_home/img/sliders/revolution/bg2.jpg')}}" alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                            <!-- LAYERS -->
+                            <div class="tp-caption rs-caption-1 sft start"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="100"
+                                data-speed="800"
+                                data-start="1500"
+                                data-easing="Back.easeInOut"
+                                data-endspeed="300">
+                               Your idea never looked so good.
+                            </div>
+
+                            <!-- LAYER -->
+                            <div class="tp-caption rs-caption-2 sft"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="200"
+                                data-speed="1000"
+                                data-start="2500"
+                                data-easing="Power4.easeOut"
+                                data-endspeed="300"
+                                data-endeasing="Power1.easeIn"
+                                data-captionhidden="off"
+                                style="z-index: 6">
+                                Our members have worked on mobile, web, logos, and branding for companies like Uber, Dropbox, and Hotel Tonight.<br>
+                            </div>
+
+                            <!-- LAYER -->
+                            <div class="tp-caption rs-caption-3 sft"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="360"
+                                data-speed="800"
+                                data-start="3500"
+                                data-easing="Power4.easeOut"
+                                data-endspeed="300"
+                                data-endeasing="Power1.easeIn"
+                                data-captionhidden="off"
+                                style="z-index: 6">
+                                <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                                <span class="page-scroll"><a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                            </div>
+                        </li>
+
+                        <!-- SLIDE 3 -->
+                        <li data-transition="slideup" data-slotamount="5" data-masterspeed="700"  data-title="Slide 3">
+                            <!-- MAIN IMAGE -->
+                            <img src="{{ asset('assets_home/img/sliders/revolution/bg3.jpg')}}"  alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                            <!-- LAYERS -->
+                            <div class="tp-caption rs-caption-1 sft start"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="110"
+                                data-speed="800"
+                                data-start="1500"
+                                data-easing="Back.easeInOut"
+                                data-endspeed="300">
+                               Great work starts with great talent
+                            </div>
+
+                            <!-- LAYER -->
+                            <div class="tp-caption rs-caption-2 sfb"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="210"
+                                data-speed="800"
+                                data-start="2500"
+                                data-easing="Power4.easeOut"
+                                data-endspeed="300"
+                                data-endeasing="Power1.easeIn"
+                                data-captionhidden="off"
+                                style="z-index: 6">
+                                Get amazing results working with the best programmers, designers, writers and other top online pros. <br>Hire freelancers with confidence, always knowing their work experience and feedback from other clients.
+                            </div>
+
+                            <!-- LAYER -->
+                            <div class="tp-caption rs-caption-3 sfb"
+                                data-x="center"
+                                data-hoffset="0"
+                                data-y="370"
+                                data-speed="800"
+                                data-start="3500"
+                                data-easing="Power4.easeOut"
+                                data-endspeed="300"
+                                data-endeasing="Power1.easeIn"
+                                data-captionhidden="off"
+                                style="z-index: 6">
+                                <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                                <span class="page-scroll"><a href="#portfolio" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="tp-bannertimer tp-bottom"></div>
+                    <div class="tp-dottedoverlay twoxtwo"></div>
+                </div>
+            </div>
+        </section>
+        <!-- End Intro Section -->
+
+        <!--  About Section -->
+        <section id="about" class="about-section section-first">
+            
+
+            <div class="about-image bg-grey">
+                <div class="container">
+                    <div class="title-v1">
+                        <h1>WorkFree</h1>
+                        <p>WorkFree <strong>company</strong> Creating an online workplace for the world and for Tunisia. <br>
+                        The best companies win with the best talent. But great people can be hard to find. We’ve created an online workplace for the world – connecting clients with top freelance professionals </p>
+                    </div>
+                    {# <div class="img-center">
+                        <img class="img-responsive" src="assets/img/mockup/mockup.png" alt="">
+                    </div> #}
+                </div>
+            </div>
+
+            <div class="container content-lg">
+                <div class="title-v1">
+                    <h2>Our Mission</h2>
+                    <p>To create economic and social value on a global scale by providing a trusted online workplace to connect, collaborate, and succeed.</p>
+                </div>
+                <div class="title-v1">
+                    <h2>Our Vision</h2>
+                    <p>To connect businesses with great talent faster than ever before.</p>
+                </div>
+            </div>
+            <div class="block-v1">
+                <div class="container">
+                    <div class="row content-boxes-v3">
+                        <div class="col-md-4 md-margin-bottom-30">
+                            <i class="icon-custom rounded-x icon-bg-dark fa fa-lightbulb-o"></i>
+                            <div class="content-boxes-in-v3">
+                                <h2 class="heading-sm">Creative Desgin</h2>
+                                <p>find top designers and creatives</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 md-margin-bottom-30">
+                            <i class="icon-custom rounded-x icon-bg-dark fa fa-flask"></i>
+                            <div class="content-boxes-in-v3">
+                                <h2 class="heading-sm">Web Development</h2>
+                                <p>choose from a world of top developers</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="icon-custom rounded-x icon-bg-dark fa fa-bolt"></i>
+                            <div class="content-boxes-in-v3">
+                                <h2 class="heading-sm">Mobile Development</h2>
+                                <p>choose among top mobile engineers and designers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="parallax-quote parallaxBg">
+                <div class="container">
+                    <div class="parallax-quote-in">
+                        <p>Don’t freelance to make a living <span class="color-green">freelance to make a life. </span> <br> Money is important. <br>but when you hit ruts, work 16 hour days and get that tough feedback, it’s going to be something else that motivates you. You need to remember why you started and keep it in focus. </p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+            {# add stati apres #}
+            {<div class="parallax-counter parallaxBg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="counters">
+                                <span class="counter">10629</span>
+                                <h4>Users</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="counters">
+                                <span class="counter">277</span>
+                                <h4>Projects</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="counters">
+                                <span class="counter">78</span>
+                                <h4>Team Members</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <div class="counters">
+                                <span class="counter">109</span>
+                                <h4>Awards</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <!--  About Section -->
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container content-lg">
+                <div class="title-v1">
+                    <h2>Find the plan that works for you</h2>
+                    
+                </div>
+
+                <div class="row service-box-v1">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-block service-block-default">
+                            <i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-lightbulb-o"></i>
+                            <h2 class="heading-md">Start your Project</h2>
+                            <p><strong>Professional freelancers and the essentials to find them.</strong></p>
+                            <ul class="list-unstyled">
+                               <div class="call-action-v1-in inner-btn page-scroll">
+                                <a href="{{ path('client_registration') }}" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-block">Start Now</a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-block service-block-default">
+                            <i class="icon-custom icon-lg icon-bg-u rounded-x icon-line icon-present"></i>
+                            <h2 class="heading-sm">Work as a Freelancer</h2>
+                            <p><strong>Work together, effortlessly and become the best freelancer rate more</strong> </p>
+                            <ul class="list-unstyled">
+                               <div class="call-action-v1-in inner-btn page-scroll">
+                                <a href="{{ path('freelancer_registration') }}" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-block">Start Working</a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="service-block service-block-default">
+                            <i class="icon-custom icon-lg icon-bg-u rounded-x icon-line icon-rocket"></i>
+                            <h2 class="heading-sm">Hire the best freelancer</h2>
+                            <p><strong>Customized, end-to-end Freelancer Management System</strong></p>
+                            <ul class="list-unstyled">
+                               <div class="call-action-v1-in inner-btn page-scroll">
+                                <a href="{{ path('recruteur_registration') }}" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-block">Hire now</a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- End Services Section -->
+
+
+{% endblock %}

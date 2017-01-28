@@ -1,0 +1,44 @@
+<?php
+// src/WF/PlatformBundle/Entity/TestFreelancer.php
+
+namespace WF\PlatformBundle\Entity;
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="WF\PlatformBundle\Entity\TestFreelancerRepository")
+ */
+class TestFreelancer
+{
+  /**
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
+
+  /**
+   * @ORM\Column(name="note", type="integer")
+   */
+  private $note;
+
+  /**
+   * @ORM\Column(name="time", type="integer")
+   */
+  private $time;
+
+  /**
+   * @ORM\ManyToOne(targetEntity="WF\PlatformBundle\Entity\Test")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $test;
+
+  /**
+   * @ORM\ManyToOne(targetEntity="WF\UserBundle\Entity\Freelancer")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $freelancer;
+  
+  // ... vous pouvez ajouter d'autres attributs bien sûr
+}

@@ -1,0 +1,39 @@
+wf_platform_index:
+    path:     /{page}
+    defaults:
+        _controller: WFPlatformBundle:Projet:index
+        page:       1
+    requirements:
+        page: \d*
+
+wf_platform_view:
+    path:     /viewprojet/{page}
+    defaults:
+        _controller: WFPlatformBundle:Projet:viewprojet
+        page:        1
+    requirements:
+        page: \d*
+
+wf_platform_find:
+    path:     /findfreelancer/{page}
+    defaults:
+        _controller: WFPlatformBundle:Projet:findfreelancer
+        page:         1
+    requirements:
+        page: \d*
+
+wf_platform_add:
+    path:     /add
+    defaults: { _controller: WFPlatformBundle:Projet:add }
+
+wf_platform_checkout:
+    path:     /checkout/{pId}/{oId}
+    defaults: { _controller: WFPlatformBundle:Projet:checkout }
+
+wf_clien_offre:
+    path:     /client/offre/{pId}/
+    defaults:
+        _controller: WFPlatformBundle:Projet:viewoffre
+wf_platform_checkoutRec:
+    path:     /checkoutRec
+    defaults: { _controller: WFPlatformBundle:Projet:checkoutRec }

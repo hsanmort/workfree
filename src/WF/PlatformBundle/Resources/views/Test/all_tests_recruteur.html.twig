@@ -1,0 +1,105 @@
+{% extends "WFUserBundle::layoutProfile.html.twig" %}
+    
+    {% block fos_user_content %}
+        <div class="wrapper">
+            <!--=== Profile ===-->
+            <div class="container content profile">
+                <div class="row">
+                    <!--Left Sidebar-->
+                    <div class="col-md-3 md-margin-bottom-40">
+                        {% if not app.user.path %}
+                            {% set imgSrc = '../holder.jpg'%}
+                        {% else %}
+                            {% set imgSrc = app.user.path %}
+                        {% endif %}
+                        <img class="img-responsive profile-img margin-bottom-20" src="{{ asset('upload/users/'~ app.user.id ~'/' ~ imgSrc) }}" alt="" width="300">
+
+                        <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                            <li class="list-group-item ">
+                                <a href="{{path('recruteur_profile_wall')}}"><i class="fa fa-user"></i> Profile</a>
+                            </li>
+                            {# <li class="list-group-item ">
+                                <a href="{{path('recruteur_profile_users')}}"><i class="fa fa-group"></i> Contacts</a>
+                            </li> #}
+                            <li class="list-group-item active">
+                                <a href="{{path('tests_recruteur')}}"><i class="fa fa-cubes"></i> My Tests</a>
+                            </li>
+                           
+                            <li class="list-group-item ">
+                                <a href="{{path('recruteur_profile_edit')}}"><i class="fa fa-cog"></i> Settings</a>
+                            </li>
+                        </ul>
+
+                        <div class="panel-heading-v2 overflow-h">
+                            <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Stats</h2>
+                            <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                        </div>
+                        <h3 class="heading-xs">Projects posted <span class="pull-right">12</span>
+                        </h3>
+                        <h3 class="heading-xs">Projects delivered <span class="pull-right">9</span>
+                        </h3>
+                        <h3 class="heading-xs">Users contacted <span class="pull-right">38</span>
+                        </h3>
+                        
+
+                        <hr>
+                        <div class="margin-bottom-50"></div>
+
+                        <!--Datepicker-->
+                        <form action="#" id="sky-form2" class="sky-form">
+                            <div id="inline-start"></div>
+                        </form>
+                        <!--End Datepicker-->
+                    </div>
+                    <!--End Left Sidebar-->
+                     <!-- Profile Content -->
+            <div class="col-md-9">
+                <div class="profile-body">
+
+                    <!--Timeline-->
+                    <div class="panel panel-profile">
+                        <div class="panel-heading overflow-h">
+                            <h2 class="heading-md pull-left"><i class="fa fa-briefcase"></i> All Tests</h2>
+                            <a class="btn-u pull-right" href="{{path('tests_new')}}">New Test</a>
+                        </div>
+                        
+                            
+                        {% for test in allTests %}
+                            <a href="{{path('tests_show', {'id': test.id })}} ">
+                            <div class="panel-heading margin-bottom-20 margin-top-20">
+                            <ul class="timeline-v2 timeline-me">
+                            <li>
+                                
+                                <time datetime="" class="cbp_tmtime">
+                                    <span> {{ test.nomTest }} </span>
+                                    <span> {{ test.dateCreate|date('m-d-Y')}} </span></time>
+                                <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                                <div class="cbp_tmlabel" style="margin-left: 50px !important;">
+                                    <h2>Passed by: <b>{{test.id}}</b> freelancer(s)</h2>
+                                    <h2>Minimum Score: <b>{{test.scoreMin}}</b></h2>
+                                    <h2>Time: <b>{{test.delai}}</b> mins</h2>
+                                    <h2>Questions: <b>{{test.questions.count}}</b></h2>
+                                </div>
+                            </li>
+                            </ul>
+                            </div>
+                            </a>
+                            
+                        {% endfor %}
+                                
+                            
+                        
+                    </div>
+                    <!--End Timeline-->
+
+                    <hr>
+
+                    
+                </div>
+            </div>
+            <!-- End Profile Content -->
+                </div>
+            </div><!--/container-->
+            <!--=== End Profile ===-->
+        </div><!--/wrapper-->
+    {% endblock fos_user_content %}

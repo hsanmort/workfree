@@ -1,0 +1,138 @@
+{% extends "WFUserBundle::layoutProfile.html.twig" %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.timer.js')}}"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            var count = {{test.delai}};
+            //var count = 3;
+            var timer = $.timer(function() {
+                if (count < 1){
+                    count = 1;
+                    $('#formTakeTest').submit();
+                } 
+                $('#counter').html(--count);
+                $('#count').val(count);
+
+            });
+            timer.set({ time : 1000, autostart : true });
+            timer.play();
+
+        });
+    </script>
+{% endblock %}
+    
+    {% block fos_user_content %}
+        <div class="wrapper">
+            <!--=== Profile ===-->
+            <div class="container content profile">
+                <div class="row">
+                    <!--Left Sidebar-->
+                    <div class="col-md-3 md-margin-bottom-40">
+                        {% if not app.user.path %}
+                            {% set imgSrc = '../holder.jpg'%}
+                        {% else %}
+                            {% set imgSrc = app.user.path %}
+                        {% endif %}
+                        <img class="img-responsive profile-img margin-bottom-20" src="{{ asset('upload/users/'~ app.user.id ~'/' ~ imgSrc) }}" alt="" width="300">
+
+                        <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                            
+                            <li class="list-group-item ">
+                                <a href="{{path('freelancer_profile_wall')}}"><i class="fa fa-user"></i> Profile</a>
+                            </li>
+                            {# <li class="list-group-item ">
+                                <a href="{{path('freelancer_profile_users')}}"><i class="fa fa-group"></i> Contacts</a>
+                            </li> #}
+                            <li class="list-group-item ">
+                                <a href="{{path('freelancer_profile_projects')}}"><i class="fa fa-cubes"></i> My Projects</a>
+                            </li>
+                            <li class="list-group-item active">
+                                <a href="{{path('tests_freelancer')}}"><i class="fa fa-cubes"></i> My Tests</a>
+                            </li>
+                           
+                            <li class="list-group-item ">
+                                <a href="{{path('freelancer_profile_edit')}}"><i class="fa fa-cog"></i> Settings</a>
+                            </li>
+                        </ul>
+
+                        <div class="panel-heading-v2 overflow-h">
+                            <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Stats</h2>
+                            <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                        </div>
+                        <h3 class="heading-xs">Projects posted <span class="pull-right">12</span>
+                        </h3>
+                        <h3 class="heading-xs">Projects delivered <span class="pull-right">9</span>
+                        </h3>
+                        <h3 class="heading-xs">Users contacted <span class="pull-right">38</span>
+                        </h3>
+                        
+
+                        <hr>
+                        <div class="margin-bottom-50"></div>
+
+                        <!--Datepicker-->
+                        <form action="#" id="sky-form2" class="sky-form">
+                            <div id="inline-start"></div>
+                        </form>
+                        <!--End Datepicker-->
+                    </div>
+                    <!--End Left Sidebar-->
+                     <!-- Profile Content -->
+            <div class="col-md-9">
+                <div class="profile-body">
+
+                    <!--Timeline-->
+                    <div class="panel panel-profile">
+                        <div class="panel-heading overflow-h">
+                            <h2 class="heading-md pull-left"><i class="fa fa-briefcase"></i> Taking Test "{{test.nomTest}}"</h2>
+                            <br>
+                            <div class="pull-right"> <span id="counter">0</span><span> Sec</span> </div>
+                            
+                        <br>
+                        <br>
+                        </div>
+
+                        <form id="formTakeTest" action="{{path('freelancer_validate_test', {'id': test.id})}}" method="POST">
+                        <input type="hidden" id="count" name="count" value="">
+                        
+                        {% for qst in test.questions %}
+                            <div class="qstDiv">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="heading-md pull-left">{{ loop.index }}. {{qst.textQues}}</h2>
+                                <br>
+                                <br>
+
+                                {% for prop in qst.propositions %}
+                                    <div class="btn-u">
+                                        <input type="radio" name="{{qst.id}}" value="{{prop.numeroPropo}}" required>
+                                        {{prop.numeroPropo}}: {{prop.descriptionPropo}}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            
+                        {% endfor %}
+
+                        <hr>
+                        <input type="submit" class="btn-u" value="Finish">
+                        </form>
+                        
+                    </div>
+                    <!--End Timeline-->
+
+                    <hr>
+
+                    
+                </div>
+            </div>
+            <!-- End Profile Content -->
+                </div>
+            </div><!--/container-->
+            <!--=== End Profile ===-->
+        </div><!--/wrapper-->
+        
+
+
+    {% endblock fos_user_content %}

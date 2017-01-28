@@ -1,0 +1,145 @@
+{% extends "WFUserBundle::layoutProfile.html.twig" %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{ asset('assets/js/formsCustoQst.js')}}"></script>
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="wrapper">
+        <!--=== Profile ===-->
+        <div class="container content profile">
+            <div class="row">
+                <!--Left Sidebar-->
+                <div class="col-md-3 md-margin-bottom-40">
+                    {% if not app.user.path %}
+                        {% set imgSrc = '../holder.jpg'%}
+                    {% else %}
+                        {% set imgSrc = app.user.path %}
+                    {% endif %}
+                    <img class="img-responsive profile-img margin-bottom-20" src="{{ asset('upload/users/'~ app.user.id ~'/' ~ imgSrc) }}" alt="" width="300">
+
+                    <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                        <li class="list-group-item active">
+                            <a href="{{path('recruteur_profile_wall')}}"><i class="fa fa-user"></i> Profile</a>
+                        </li>
+                        {# <li class="list-group-item ">
+                            <a href="{{path('recruteur_profile_users')}}"><i class="fa fa-group"></i> Contacts</a>
+                        </li> #}
+                        <li class="list-group-item ">
+                            <a href="{{path('tests_recruteur')}}"><i class="fa fa-cubes"></i> My Tests</a>
+                        </li>
+                       
+                        <li class="list-group-item ">
+                            <a href="{{path('recruteur_profile_edit')}}"><i class="fa fa-cog"></i> Settings</a>
+                        </li>
+                    </ul>
+
+                    <div class="panel-heading-v2 overflow-h">
+                        <h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> Stats</h2>
+                        <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                    </div>
+                    <h3 class="heading-xs">Projects posted <span class="pull-right">12</span>
+                    </h3>
+                    <h3 class="heading-xs">Projects delivered <span class="pull-right">9</span>
+                    </h3>
+                    <h3 class="heading-xs">Users contacted <span class="pull-right">38</span>
+                    </h3>
+                    
+
+                    <hr>
+                    <div class="margin-bottom-50"></div>
+
+                    <!--Datepicker-->
+                    <form action="#" id="sky-form2" class="sky-form">
+                        <div id="inline-start"></div>
+                    </form>
+                    <!--End Datepicker-->
+                </div>
+                <!--End Left Sidebar-->
+                 <!-- Profile Content -->
+        <div class="col-md-9">
+            <div class="profile-body">
+
+                <!--Timeline-->
+                <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="heading-md pull-left"><i class="fa fa-briefcase"></i> Edit a question</h2>
+                        <div class="pull-right margin-buttom-20" style="display: inline-flex;">
+                        <div class="pull-left">
+                        {{ form(delete_form) }}
+                        </div>
+                </div>
+                    
+
+                    <br>
+                    <br>
+
+                    <hr>
+                    
+                        
+                    {{ form_start(edit_form, {'attr': {'id':'newTestForm', 'class':"sky-form"}}) }}
+
+                    
+
+                    <dl class="dl-horizontal" >
+                                       
+                        <dt><strong>Text Question</strong></dt>
+                        <dd>
+                            <section>
+                                <label class="input textarea textarea-resizable">
+                                    <i class=" icon-append fa fa-comment"></i>
+                                    {{ form_widget(edit_form.textQues, {'attr': {'class': 'sky-form'}}) }}
+                                    {{ form_errors(edit_form.textQues) }}
+                                </label>
+                            </section>
+                        </dd>
+                        
+
+
+
+                        <hr>
+                        <ul class="props" data-prototype="{{ form_widget(edit_form.propositions.vars.prototype)|e }}">
+                            {# iterate over each existing tag and render its only field: name #}
+
+                            <div class="props_old">
+                                {% for prop in edit_form.propositions %}
+                                            {{ form_widget(prop, {'attr': {'class': 'sky-form'}}) }}
+                                            {{ form_errors(prop) }}
+                                {% endfor %}
+                            </div>
+
+
+                        </ul>
+                        
+
+
+
+                        <hr>
+                        <a href="{{ path('tests_recruteur') }}" class="btn-u">Back to the list</a>
+                        {{ form_widget(edit_form.submit, {'attr': {'class': 'btn-u'}}) }}
+
+                    </dl>
+                    {{ form_end(edit_form) }}
+                    <script>
+                        $("#newTestForm").validate();
+                    </script>
+                    <ul class="record_actions">
+                            
+                    </ul>
+                    
+                </div>
+                <!--End Timeline-->
+
+                <hr>    
+            </div>
+        </div>
+        <!-- End Profile Content -->
+            </div>
+        </div><!--/container-->
+        <!--=== End Profile ===-->
+    </div><!--/wrapper-->
+{% endblock fos_user_content %}
+
+
+
